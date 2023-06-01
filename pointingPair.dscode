@@ -1,0 +1,20 @@
+FUNCTION pointingPair (Cell[] group)
+BEGIN
+    vals = getNumVals(group)
+    FOR val = 0 TO 8
+        IF vals[val] == 2 THEN
+            cells = getCellsWithVal(group, val+1)
+            cell1 = cells[0]
+            var cell2 = cells[1]
+
+            IF cell1.box == cell2.box && cell1.box != group THEN
+                elimValFromGroupExcept(cell1.box, val+1, cells)
+            ELSEIF cell1.row == cell2.row && cell1.row != group THEN
+                elimValFromGroupExcept(cell1.row, val+1, cells)
+            ELSEIF cell1.col == cell2.col && cell1.col != group THEN
+                elimValFromGroupExcept(cell1.col, val+1, cells)
+            ENDIF
+        ENDIF
+    NEXT val
+    ENDFOR
+END
